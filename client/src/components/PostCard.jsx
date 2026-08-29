@@ -60,13 +60,31 @@ const PostCard = ({ post }) => {
       )}
 
       {/* Images */}
-      {post?.image_urls && post.image_urls.length > 0 && (
+
+      <div className={post.image_urls.length === 1 ? 'w-full' : 'grid grid-cols-2 gap-2'}>
+     {post.image_urls.map((img, index) => (
+         <img 
+             src={img} 
+             key={index} 
+             className={`w-full rounded-lg ${
+                 post.image_urls.length === 1 
+                     ? 'h-auto max-h-[600px] object-contain' 
+                     : 'h-48 object-cover'
+             }`} 
+             alt="" 
+         />
+     ))}
+</div>
+
+
+
+     {/* org {post?.image_urls && post.image_urls.length > 0 && (
         <div className={`grid ${post.image_urls.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} gap-2`}>
           {post.image_urls.map((img, index) => (
             <img src={img} key={index} className='w-full h-48 object-cover rounded-lg' alt="" />
           ))}
         </div>
-      )}
+      )}  org */}
 
       {/* Actions */}
       <div className='flex items-center gap-6 text-gray-600 text-sm pt-2 border-t border-gray-100'>
